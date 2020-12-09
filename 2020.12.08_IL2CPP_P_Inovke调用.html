@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="generator" content="VNote">
+
+    <title>2020.12.08_IL2CPP_P_Inovke调用</title>
+    <link rel="icon" href="https://github.com/tamlok/vnote/raw/master/src/resources/icons/vnote.ico">
+
+    <style type="text/css">
+    img { max-width: 100% !important; height: auto !important; }
+
+    </style>
+
+    <style type="text/css">
+    *,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.container-fluid {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.col-12 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+@media (min-width: 768px) {
+    .col-md-3 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 25%;
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+}
+
+@media (min-width: 768px) {
+    .col-md-9 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 75%;
+        flex: 0 0 75%;
+        max-width: 75%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .col-xl-2 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 16.666667%;
+        flex: 0 0 16.666667%;
+        max-width: 16.666667%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .col-xl-10 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 83.333333%;
+        flex: 0 0 83.333333%;
+        max-width: 83.333333%;
+    }
+}
+
+@media (min-width: 768px) {
+    .pt-md-3, .py-md-3 {
+        padding-top: 1rem!important;
+    }
+}
+
+@media (min-width: 768px) {
+    .pb-md-3, .py-md-3 {
+        padding-bottom: 1rem!important;
+    }
+}
+
+@media (min-width: 768px) {
+    .pl-md-5, .px-md-5 {
+        padding-left: 3rem!important;
+    }
+}
+
+.d-none {
+    display: none!important;
+}
+
+@media (min-width: 1200px) {
+    .d-xl-block {
+        display: block!important;
+    }
+}
+
+@media (min-width: 768px) {
+    .d-md-block {
+        display: block!important;
+    }
+}
+
+.bd-content {
+    -webkit-box-ordinal-group: 1;
+    -ms-flex-order: 0;
+    order: 0;
+}
+
+.bd-toc {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 4rem;
+    height: calc(100vh - 10rem);
+    overflow-y: auto;
+}
+
+.bd-toc {
+    -webkit-box-ordinal-group: 2;
+    -ms-flex-order: 1;
+    order: 1;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    font-size: .875rem;
+}
+
+.section-nav {
+    padding-left: 0;
+}
+
+.section-nav ul {
+    font-size: .875rem;
+    list-style-type: none;
+}
+
+.section-nav li {
+    font-size: .875rem;
+}
+
+.section-nav a {
+    color: inherit !important;
+}
+
+.row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+@media (min-width: 1200px) {
+    .flex-xl-nowrap {
+        flex-wrap: nowrap !important;
+    }
+}
+
+#floating-button {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: #00897B;
+    position: fixed;
+    top: .5rem;
+    right: .5rem;
+    cursor: pointer;
+    box-shadow: 0px 2px 5px #666;
+}
+
+#floating-button .more {
+    color: #F5F5F5;
+    position: absolute;
+    top: 0;
+    display: block;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    line-height: 2.5rem;
+    font-size: 2rem;
+    font-family: 'monospace';
+    font-weight: 300;
+}
+
+.hide-none {
+    display: none !important;
+}
+
+.col-expand {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 100% !important;
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    padding-right: 3rem !important;
+}
+
+.outline-bold {
+    font-weight: bolder !important;
+}
+
+@media print {
+    #floating-button {
+        display: none !important;
+    }
+}
+
+    img { max-width: 100% !important; height: auto !important; }
+@keyframes flash { 
+  0% { color: rgb(116, 130, 207); }
+  10% { color: rgb(87, 104, 196); }
+  40% { color: rgb(87, 104, 196); }
+  50% { color: rgb(116, 130, 207); }
+  60% { color: rgb(87, 104, 196); }
+  90% { color: rgb(87, 104, 196); }
+}
+.highlighted-anchor { animation: flash 1s; }
+div.mark-rect { background: transparent; border: 5px solid rgb(87, 104, 196); border-radius: 2px; position: absolute; }
+#vnote-footer { width: 100%; text-align: center; opacity: 0.2; margin-top: 3rem; }
+#vnote-footer p { font-size: 0.8rem; }
+#vnote-footer a { color: inherit !important; }
+x-eqs { display: flex; flex-direction: row; align-content: space-between; align-items: center; }
+x-eqs > x-eqn { width: 100%; margin-left: 3rem; }
+x-eqs > span { text-align: right; }
+.view-image, .view-svg { transition: 0.3s; }
+.modal-box { display: none; position: fixed; z-index: 1000; padding-top: 50px; left: 0px; top: 0px; width: 100%; height: 100%; overflow: hidden; background-color: rgba(68, 68, 68, 0.952941); }
+.modal-content { margin: auto; display: block; width: auto; height: auto; cursor: move; }
+.modal-content { animation-name: zoom; animation-duration: 0.6s; }
+@-webkit-keyframes zoom { 
+  0% { transform: scale(0); }
+  100% { transform: scale(1); }
+}
+@keyframes zoom { 
+  0% { transform: scale(0); }
+  100% { transform: scale(1); }
+}
+span.modal-close { position: absolute; z-index: 1000; top: 15px; right: 35px; color: rgb(218, 218, 218); font-size: 40px; font-weight: bold; transition: 0.3s; }
+span.modal-close:hover, span.modal-close:focus { color: rgb(238, 238, 238); text-decoration: none; cursor: pointer; }
+@media print {
+  pre, pre code, td.hljs-ln-code { white-space: pre-wrap !important; word-break: break-all !important; }
+  code, a { word-break: break-all !important; }
+  div.flowchart-diagram, div.mermaid-diagram, div.plantuml-diagram { overflow: hidden !important; }
+  img { max-width: 100% !important; height: auto !important; }
+  #vnote-footer { display: none !important; }
+}
+.alert { position: relative; padding: 0.75rem 1.25rem; margin-bottom: 1rem; border: 1px solid transparent; border-radius: 0.25rem; }
+.alert-primary { color: rgb(0, 64, 133); background-color: rgb(204, 229, 255); border-color: rgb(184, 218, 255); }
+.alert-secondary { color: rgb(56, 61, 65); background-color: rgb(226, 227, 229); border-color: rgb(214, 216, 219); }
+.alert-success { color: rgb(21, 87, 36); background-color: rgb(212, 237, 218); border-color: rgb(195, 230, 203); }
+.alert-info { color: rgb(12, 84, 96); background-color: rgb(209, 236, 241); border-color: rgb(190, 229, 235); }
+.alert-warning { color: rgb(133, 100, 4); background-color: rgb(255, 243, 205); border-color: rgb(255, 238, 186); }
+.alert-danger { color: rgb(114, 28, 36); background-color: rgb(248, 215, 218); border-color: rgb(245, 198, 203); }
+.alert-light { color: rgb(129, 129, 130); background-color: rgb(254, 254, 254); border-color: rgb(253, 253, 254); }
+.alert-dark { color: rgb(27, 30, 33); background-color: rgb(214, 216, 217); border-color: rgb(198, 200, 202); }
+.vnote-anchor { font-weight: 400; color: rgba(0, 123, 255, 0.498039); transition: color 0.16s linear; padding-left: 0.375em; -webkit-font-smoothing: antialiased; text-decoration: none; opacity: 0; }
+.vnote-anchor:hover { color: rgb(0, 123, 255); text-decoration: none; opacity: 1; }
+.vnote-anchor::after { content: attr(data-anchor-icon); }
+.vnote-btn { position: relative; display: inline-block; padding: 6px 12px; font-size: 13px; font-weight: 700; line-height: 20px; white-space: nowrap; vertical-align: middle; cursor: pointer; border: none; user-select: none; -webkit-appearance: none; }
+.vnote-copy-clipboard-btn { transition: opacity 0.3s ease-in-out; opacity: 0; padding: 2px 6px; position: absolute; top: 5px; right: 5px; }
+pre:hover .vnote-copy-clipboard-btn { opacity: 1; }
+pre.vnote-snippet { position: relative; }
+body { margin: 0px auto; font-family: "Segoe UI", Helvetica, sans-serif, Tahoma, Arial, Geneva, Georgia, Palatino, "Times New Roman", "Hiragino Sans GB", 冬青黑体, "Microsoft YaHei", 微软雅黑, "Microsoft YaHei UI", "WenQuanYi Micro Hei", 文泉驿雅黑, Dengxian, 等线体, STXihei, 华文细黑, "Liberation Sans", "Droid Sans", NSimSun, 新宋体, SimSun, 宋体; color: rgb(218, 218, 218); line-height: 1.5; padding: 15px; background: rgb(68, 68, 68); font-size: 16px; }
+h1, h2, h3, h4, h5, h6 { color: rgb(224, 224, 224); font-weight: bold; margin-top: 20px; margin-bottom: 10px; padding: 0px; }
+p { padding: 0px; margin-top: 16px; margin-bottom: 16px; }
+h1 { font-size: 26px; }
+h2 { font-size: 24px; }
+h3 { font-size: 22px; }
+h4 { font-size: 20px; }
+h5 { font-size: 19px; }
+h6 { font-size: 18px; }
+a { color: rgb(97, 175, 239); margin: 0px; padding: 0px; vertical-align: baseline; text-decoration: none; word-break: break-word; }
+a:hover { text-decoration: underline; }
+a:visited { color: rgb(186, 104, 200); }
+ul, ol { padding: 0px 0px 0px 24px; }
+li { line-height: 24px; }
+li ul, li ol { margin-left: 16px; }
+p, ul, ol { font-size: 16px; line-height: 24px; }
+mark { color: rgb(0, 0, 0); background-color: rgb(216, 216, 0); }
+pre { display: block; overflow-y: hidden; overflow-x: auto; tab-size: 4; }
+code { font-family: Consolas, Monaco, monospace, Courier; color: rgb(152, 195, 121); word-break: break-word; }
+pre code { display: block; overflow-x: auto; padding: 0.5em; color: rgb(218, 218, 218); background-color: rgb(74, 74, 74); border-left: 0.5em solid rgb(134, 94, 27); line-height: 1.5; font-family: Consolas, Monaco, monospace, Courier; white-space: pre; tab-size: 4; }
+pre code.markdown-metadata { border-left: 0.5em solid rgb(216, 159, 62); }
+aside { display: block; float: right; width: 390px; }
+blockquote { color: rgb(188, 188, 188); background-color: rgb(74, 74, 74); border-left: 0.5em solid rgb(138, 138, 138); padding: 0px 1em; margin-left: 0px; }
+blockquote p { color: rgb(188, 188, 188); }
+hr { display: block; text-align: left; margin: 1em 0px; border: none; height: 2px; background: rgb(138, 138, 138); }
+table { padding: 0px; margin: 1rem 0.5rem; border-collapse: collapse; }
+table tr { border-top: 2px solid rgb(138, 138, 138); margin: 0px; padding: 0px; }
+table tr th { font-weight: bold; border: 2px solid rgb(138, 138, 138); margin: 0px; padding: 6px 13px; }
+table tr td { border: 2px solid rgb(138, 138, 138); margin: 0px; padding: 6px 13px; }
+table tr th :first-child, table tr td :first-child { margin-top: 0px; }
+table tr th :last-child, table tr td :last-child { margin-bottom: 0px; }
+div.mermaid-diagram { margin: 16px 0px; overflow-y: hidden; background: rgb(148, 148, 148); color: rgb(34, 34, 34); }
+div.flowchart-diagram { padding: 0px 5px; margin: 16px 0px; width: fit-content; overflow: hidden; background: rgb(148, 148, 148); color: rgb(34, 34, 34); }
+div.wavedrom-diagram { padding: 0px 5px; margin: 16px 0px; width: fit-content; overflow: hidden; background: rgb(148, 148, 148); color: rgb(34, 34, 34); }
+div.plantuml-diagram { padding: 5px 5px 0px; margin: 16px 0px; width: fit-content; overflow: hidden; background: rgb(148, 148, 148); color: rgb(34, 34, 34); }
+.img-package { text-align: center; }
+img.img-center { display: block; margin-left: auto; margin-right: auto; }
+span.img-caption { min-width: 20%; max-width: 80%; display: inline-block; padding: 10px; margin: 0px auto; border-bottom: 1px solid rgb(118, 118, 118); color: rgb(188, 188, 188); text-align: center; line-height: 1.5; }
+.emoji_zero, .emoji_one, .emoji_two, .emoji_three, .emoji_four, .emoji_five, .emoji_six, .emoji_seven, .emoji_eight, .emoji_nine { margin-left: 5px; margin-right: 8px; }
+div.preview-hint { opacity: 0.5; margin-top: 30%; margin-bottom: 30%; align-items: center; display: flex; flex-direction: column; justify-content: center; }
+table.hljs-ln tr { border: none; background-color: transparent; }
+table.hljs-ln tr td { border: none; background-color: transparent; }
+table.hljs-ln tr td.hljs-ln-numbers { user-select: none; text-align: center; color: rgb(118, 118, 118); border-right: 1px solid rgb(118, 118, 118); vertical-align: top; padding-right: 5px; white-space: nowrap; }
+table.hljs-ln tr td.hljs-ln-code { padding-left: 10px; }
+::-webkit-scrollbar { background-color: rgb(68, 68, 68); width: 14px; height: 14px; border: none; }
+::-webkit-scrollbar-corner { background-color: rgb(68, 68, 68); }
+::-webkit-scrollbar-button { height: 14px; width: 14px; background-color: rgb(68, 68, 68); }
+::-webkit-scrollbar-button:hover { background-color: rgb(102, 102, 102); }
+::-webkit-scrollbar-button:active { background-color: rgb(96, 96, 96); }
+::-webkit-scrollbar-track { background-color: rgb(68, 68, 68); }
+::-webkit-scrollbar-thumb { border: none; background-color: rgb(88, 88, 88); }
+::-webkit-scrollbar-thumb:hover { background-color: rgb(102, 102, 102); }
+::-webkit-scrollbar-thumb:active { background-color: rgb(96, 96, 96); }
+::-webkit-scrollbar-button:horizontal:increment { background-image: url('data:image/svg+xml;utf8,<svg width="512" height="512" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <g>    <g transform="rotate(-90 256.00000000000006,256) " id="svg_1">   <polygon fill="%23DADADA" id="svg_2" points="128,192 256,320 384,192  "/>  </g> </g></svg>'); background-repeat: no-repeat; background-size: contain; }
+::-webkit-scrollbar-button:horizontal:decrement { background-image: url('data:image/svg+xml;utf8,<svg width="512" height="512" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <g>    <g transform="rotate(90 255.99999999999997,256.00000000000006) " id="svg_1">   <polygon points="128,192 256,320 384,192  " id="svg_2" fill="%23DADADA"/>  </g> </g></svg>'); background-repeat: no-repeat; background-size: contain; }
+::-webkit-scrollbar-button:vertical:increment { background-image: url('data:image/svg+xml;utf8,<svg width="512" height="512" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <g>    <g transform="null" id="svg_1">   <polygon points="128,192 256,320 384,192  " id="svg_2" fill="%23DADADA"/>  </g> </g></svg>'); background-repeat: no-repeat; background-size: contain; }
+::-webkit-scrollbar-button:vertical:decrement { background-image: url('data:image/svg+xml;utf8,<svg width="512" height="512" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <g>    <g transform="rotate(180 255.99999999999997,256) " id="svg_1">   <polygon points="128,192 256,320 384,192  " id="svg_2" fill="%23DADADA"/>  </g> </g></svg>'); background-repeat: no-repeat; background-size: contain; }
+::selection { background: rgb(140, 186, 232); color: rgb(218, 218, 218); }
+.hljs { display: block; overflow-x: auto; padding: 0.5em; color: rgb(218, 218, 218); background: rgb(74, 74, 74); }
+.hljs-comment, .hljs-quote { color: rgb(175, 135, 135); }
+.hljs-doctag, .hljs-keyword, .hljs-formula { color: rgb(204, 178, 76); }
+.hljs-section, .hljs-name, .hljs-selector-tag, .hljs-deletion, .hljs-subst { color: rgb(227, 124, 132); }
+.hljs-literal { color: rgb(86, 182, 194); }
+.hljs-string, .hljs-regexp, .hljs-addition, .hljs-attribute, .hljs-meta-string { color: rgb(240, 98, 146); }
+.hljs-built_in, .hljs-class .hljs-title { color: rgb(128, 203, 196); }
+.hljs-attr, .hljs-variable, .hljs-template-variable, .hljs-type, .hljs-selector-class, .hljs-selector-attr, .hljs-selector-pseudo, .hljs-number { color: rgb(206, 147, 219); }
+.hljs-symbol, .hljs-bullet, .hljs-link, .hljs-meta, .hljs-selector-id, .hljs-title { color: rgb(132, 192, 242); }
+.hljs-emphasis { font-style: italic; }
+.hljs-strong { font-weight: bold; }
+.hljs-link { text-decoration: underline; }
+
+    </style>
+
+    <script type="text/javascript">
+var toc = [];
+
+var setVisible = function(node, visible) {
+    var cl = 'hide-none';
+    if (visible) {
+        node.classList.remove(cl);
+    } else {
+        node.classList.add(cl);
+    }
+};
+
+var isVisible = function(node) {
+    var cl = 'hide-none';
+    return !node.classList.contains(cl);
+};
+
+var setPostContentExpanded = function(node, expanded) {
+    var cl = 'col-expand';
+    if (expanded) {
+        node.classList.add(cl);
+    } else {
+        node.classList.remove(cl);
+    }
+};
+
+var setOutlinePanelVisible = function(visible) {
+    var outlinePanel = document.getElementById('outline-panel');
+    var postContent = document.getElementById('post-content');
+
+    setVisible(outlinePanel, visible);
+    setPostContentExpanded(postContent, !visible);
+};
+
+var isOutlinePanelVisible = function() {
+    var outlinePanel = document.getElementById('outline-panel');
+    return isVisible(outlinePanel);
+};
+
+window.addEventListener('load', function() {
+    var outlinePanel = document.getElementById('outline-panel');
+    outlinePanel.style.display = 'initial';
+
+    var floatingContainer = document.getElementById('container-floating');
+    floatingContainer.style.display = 'initial';
+
+    var outlineContent = document.getElementById('outline-content');
+    var postContent = document.getElementById('post-content');
+
+    // Escape @text to Html.
+    var escapeHtml = function(text) {
+        var map = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#039;'
+        };
+
+        return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+    }
+
+    // Fetch the outline.
+    var headers = postContent.querySelectorAll("h1, h2, h3, h4, h5, h6");
+    toc = [];
+    for (var i = 0; i < headers.length; ++i) {
+        var header = headers[i];
+
+        toc.push({
+            level: parseInt(header.tagName.substr(1)),
+            anchor: header.id,
+            title: escapeHtml(header.textContent)
+        });
+    }
+
+    if (toc.length == 0) {
+        setOutlinePanelVisible(false);
+        setVisible(floatingContainer, false);
+        return;
+    }
+
+    var baseLevel = baseLevelOfToc(toc);
+    var tocTree = tocToTree(toPerfectToc(toc, baseLevel), baseLevel);
+
+    outlineContent.innerHTML = tocTree;
+    setOutlinePanelVisible(true);
+    setVisible(floatingContainer, true);
+});
+
+// Return the topest level of @toc, starting from 1.
+var baseLevelOfToc = function(p_toc) {
+    var level = -1;
+    for (i in p_toc) {
+        if (level == -1) {
+            level = p_toc[i].level;
+        } else if (level > p_toc[i].level) {
+            level = p_toc[i].level;
+        }
+    }
+
+    if (level == -1) {
+        level = 1;
+    }
+
+    return level;
+};
+
+// Handle wrong title levels, such as '#' followed by '###'
+var toPerfectToc = function(p_toc, p_baseLevel) {
+    var i;
+    var curLevel = p_baseLevel - 1;
+    var perfToc = [];
+    for (i in p_toc) {
+        var item = p_toc[i];
+
+        // Insert empty header.
+        while (item.level > curLevel + 1) {
+            curLevel += 1;
+            var tmp = { level: curLevel,
+                        anchor: '',
+                        title: '[EMPTY]'
+                      };
+            perfToc.push(tmp);
+        }
+
+        perfToc.push(item);
+        curLevel = item.level;
+    }
+
+    return perfToc;
+};
+
+var itemToHtml = function(item) {
+    return '<a href="#' + item.anchor + '" data="' + item.anchor + '">' + item.title + '</a>';
+};
+
+// Turn a perfect toc to a tree using <ul>
+var tocToTree = function(p_toc, p_baseLevel) {
+    var i;
+    var front = '<li>';
+    var ending = ['</li>'];
+    var curLevel = p_baseLevel;
+    for (i in p_toc) {
+        var item = p_toc[i];
+        if (item.level == curLevel) {
+            front += '</li>';
+            front += '<li>';
+            front += itemToHtml(item);
+        } else if (item.level > curLevel) {
+            // assert(item.level - curLevel == 1)
+            front += '<ul>';
+            ending.push('</ul>');
+            front += '<li>';
+            front += itemToHtml(item);
+            ending.push('</li>');
+            curLevel = item.level;
+        } else {
+            while (item.level < curLevel) {
+                var ele = ending.pop();
+                front += ele;
+                if (ele == '</ul>') {
+                    curLevel--;
+                }
+            }
+            front += '</li>';
+            front += '<li>';
+            front += itemToHtml(item);
+        }
+    }
+    while (ending.length > 0) {
+        front += ending.pop();
+    }
+    front = front.replace("<li></li>", "");
+    front = '<ul>' + front + '</ul>';
+    return front;
+};
+
+var toggleMore = function() {
+    if (toc.length == 0) {
+        return;
+    }
+
+    var p = document.getElementById('floating-more');
+    if (isOutlinePanelVisible()) {
+        p.textContent = '<';
+        setOutlinePanelVisible(false);
+    } else {
+        p.textContent = '>';
+        setOutlinePanelVisible(true);
+    }
+};
+
+window.addEventListener('scroll', function() {
+    if (toc.length == 0 || !isOutlinePanelVisible()) {
+        return;
+    }
+
+    var postContent = document.getElementById('post-content');
+    var scrollTop = document.documentElement.scrollTop
+                    || document.body.scrollTop
+                    || window.pageYOffset;
+    var eles = postContent.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+    if (eles.length == 0) {
+        return;
+    }
+
+    var idx = -1;
+    var biaScrollTop = scrollTop + 50;
+    for (var i = 0; i < eles.length; ++i) {
+        if (biaScrollTop >= eles[i].offsetTop) {
+            idx = i;
+        } else {
+            break;
+        }
+    }
+
+    var header = '';
+    if (idx != -1) {
+        header = eles[idx].id;
+    }
+
+    highlightItemOnlyInOutline(header);
+});
+
+var highlightItemOnlyInOutline = function(id) {
+    var cl = 'outline-bold';
+    var outlineContent = document.getElementById('outline-content');
+    var eles = outlineContent.querySelectorAll("a");
+    var target = null;
+    for (var i = 0; i < eles.length; ++i) {
+        var ele = eles[i];
+        if (ele.getAttribute('data') == id) {
+            target = ele;
+            ele.classList.add(cl);
+        } else {
+            ele.classList.remove(cl);
+        }
+    }
+
+    // TODO: scroll target into view within the outline panel scroll area.
+};
+
+</script>
+
+
+<!-- HEAD_PLACE_HOLDER -->
+</head>
+<body>
+<div class="container-fluid">
+<div class="row flex-xl-nowrap">
+    <div id="outline-panel" style="display:none;" class="d-none d-md-block d-xl-block col-md-3 col-xl-2 bd-toc">
+        <div id="outline-content" class="section-nav"></div>
+    </div>
+    <div id="post-content" class="col-12 col-md-9 col-xl-10 py-md-3 pl-md-5 bd-content">
+    <h1 id="toc_0">2020.12.08_IL2CPP_P_Inovke调用<a class="vnote-anchor" href="#toc_0" data-anchor-icon="#"></a></h1>
+<p>(译注：P/Invoke，全称是platforminvoke service，平台调用服务，简单的说就是允许托管代码调用在 DLL 中实现的非托管函数。而在这期间一个重要的工作就是marshall：让托管代码中的数据和原生代码中的数据可以相互访问。我在下文中都称之为内存转换)</p>
+<p>在这篇文章里，我们会讨论il2cpp.exe是如何生成在托管代码和原生代码间进行交互操作而使用到的封装函数和类型。特别的，我们将深入探讨blittable和non-blittable之间的区别，理解String，Array数据在内存上的转换，以及了解这些转换所付出的代价。</p>
+<p>我编写托管和原生间的交互代码已经有好一段时间了，但是要让p/invoke在C#中的声明始终保持正确是一件很困难的事情。理解运行时那些对象是如何在内存上进行处理的就更加令人感觉神秘了。因为IL2CPP在这方面为我们做了绝大部分的工作，我们可以查看（甚至调试）这些内存转换行为，为我们处理问题和效率分析提供良好的支持。</p>
+<p>这篇文章不会提供内存转换或者是原生代码交互的基础介绍。这是一个非常宽泛的话题，一篇博文根本不可能放得下。Unity的官方文档有讨论原生插件是如何与Unity交互的。Mono和Microsoft也对p/invoke提供了足够多的信息。</p>
+<p>老生常谈了：在这个系列中，我们所探索的代码都很有可能在以后的Unity版本中发生变化。然而不管代码怎么变，其基础的概念是不会改变的。所以这个系列中的所有讨论的代码都属于实现细节。</p>
+<pre><code class="lang-c++ hljs"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cmath&gt;</span></span>
+
+<span class="hljs-keyword">extern</span> <span class="hljs-string">"C"</span> {
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">Increment</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span> </span>{
+<span class="hljs-keyword">return</span> i + <span class="hljs-number">1</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">StringsMatch</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span>* l, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span>* r)</span> </span>{
+<span class="hljs-keyword">return</span> <span class="hljs-built_in">strcmp</span>(l, r) == <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Vector</span> {</span>
+<span class="hljs-keyword">float</span> x;
+<span class="hljs-keyword">float</span> y;
+<span class="hljs-keyword">float</span> z;
+};
+
+<span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">ComputeLength</span><span class="hljs-params">(Vector v)</span> </span>{
+<span class="hljs-keyword">return</span> <span class="hljs-built_in">sqrt</span>(v.x*v.x + v.y*v.y + v.z*v.z);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">SetX</span><span class="hljs-params">(Vector* v, <span class="hljs-keyword">float</span> value)</span> </span>{
+v-&gt;x = value;
+}
+
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Boss</span> {</span>
+<span class="hljs-keyword">char</span>* name;
+<span class="hljs-keyword">int</span> health;
+};
+
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">IsBossDead</span><span class="hljs-params">(Boss b)</span> </span>{
+<span class="hljs-keyword">return</span> b.health == <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">SumArrayElements</span><span class="hljs-params">(<span class="hljs-keyword">int</span>* elements, <span class="hljs-keyword">int</span> size)</span> </span>{
+<span class="hljs-keyword">int</span> sum = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; size; ++i) {
+sum += elements[i];
+}
+<span class="hljs-keyword">return</span> sum;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">SumBossHealth</span><span class="hljs-params">(Boss* bosses, <span class="hljs-keyword">int</span> size)</span> </span>{
+<span class="hljs-keyword">int</span> sum = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; size; ++i) {
+sum += bosses[i].health;
+}
+<span class="hljs-keyword">return</span> sum;
+}
+
+}
+</code></pre>
+<p>在Unity中的托管代码仍然在HelloWorld.cs文件中：</p>
+<pre><code class="lang-c# hljs">void Start () {
+<span class="hljs-keyword">Debug</span>.<span class="hljs-built_in">Log</span> (<span class="hljs-keyword">string</span>.<span class="hljs-keyword">Format</span> (<span class="hljs-string">"Using a blittable argument: {0}"</span>, Increment (<span class="hljs-number">42</span>)));
+<span class="hljs-keyword">Debug</span>.<span class="hljs-built_in">Log</span> (<span class="hljs-keyword">string</span>.<span class="hljs-keyword">Format</span> (<span class="hljs-string">"Marshaling strings: {0}"</span>, StringsMatch (<span class="hljs-string">"Hello"</span>, <span class="hljs-string">"Goodbye"</span>)));
+
+var <span class="hljs-built_in">vector</span> = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Vector</span> (<span class="hljs-number">1.0</span>f, <span class="hljs-number">2.0</span>f, <span class="hljs-number">3.0</span>f);
+<span class="hljs-keyword">Debug</span>.<span class="hljs-built_in">Log</span> (<span class="hljs-keyword">string</span>.<span class="hljs-keyword">Format</span> (<span class="hljs-string">"Marshaling a blittable struct: {0}"</span>, ComputeLength (<span class="hljs-built_in">vector</span>)));
+SetX (ref <span class="hljs-built_in">vector</span>, <span class="hljs-number">42.0</span>f);
+<span class="hljs-keyword">Debug</span>.<span class="hljs-built_in">Log</span> (<span class="hljs-keyword">string</span>.<span class="hljs-keyword">Format</span> (<span class="hljs-string">"Marshaling a blittable struct by reference: {0}"</span>, <span class="hljs-built_in">vector</span>.x));
+
+<span class="hljs-keyword">Debug</span>.<span class="hljs-built_in">Log</span> (<span class="hljs-keyword">string</span>.<span class="hljs-keyword">Format</span> (<span class="hljs-string">"Marshaling a non-blittable struct: {0}"</span>, IsBossDead (<span class="hljs-keyword">new</span> Boss(<span class="hljs-string">"Final Boss"</span>, <span class="hljs-number">100</span>))));
+
+int[] values = {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>};
+<span class="hljs-keyword">Debug</span>.<span class="hljs-built_in">Log</span>(<span class="hljs-keyword">string</span>.<span class="hljs-keyword">Format</span>(<span class="hljs-string">"Marshaling an array: {0}"</span>, SumArrayElements(values, values.Length)));
+Boss[] bosses = {<span class="hljs-keyword">new</span> Boss(<span class="hljs-string">"First Boss"</span>, <span class="hljs-number">25</span>), <span class="hljs-keyword">new</span> Boss(<span class="hljs-string">"Second Boss"</span>, <span class="hljs-number">45</span>)};
+<span class="hljs-keyword">Debug</span>.<span class="hljs-built_in">Log</span>(<span class="hljs-keyword">string</span>.<span class="hljs-keyword">Format</span>(<span class="hljs-string">"Marshaling an array by reference: {0}"</span>, SumBossHealth(bosses, bosses.Length)));
+}
+</code></pre>
+<h2 id="toc_1">为啥需要内存转换？<a class="vnote-anchor" href="#toc_1" data-anchor-icon="#"></a></h2>
+<p>既然IL2CPP已经把C#代码都变成了C++代码，我们干嘛还需要从C#做内存转换到C++？虽然生成的C++代码是原生代码，但是在某些情况下，C#中数据类型的呈现还是和C++有所区别的，因此IL2CPP在运行的时候必须在两边来回转换。il2cpp.exe对数据类型和方法都会做相同的转换操作。</p>
+<p>在托管代码层面，所有的数据类型都被分为两类：blittable或者non-blittable。blittable类型意味着在托管和原生代码中，内存的表现是一致的，没有区别（比如：byte，int，float）。Non-blittable类型在两者中的内存表现就不一致。（比如：bool，string，array）。正因为这样，blittable类型数据能够直接传递给原生代码，但是non-blittable类型就需要做转换工作了。而这个转换工作很自然的就牵扯到新内存的分配。</p>
+<p>为了告诉托管编译器某些函数是在原生代码中实现的，<strong>我们需要使用“extern”关键字。使用这个关键字，和“DllImport”属性相配合</strong>，使得托管的运行时库能够找到原生中的函数并且调用他们。il2cpp.exe会为每一个extern函数产生一个封装。这层封装执行了以下一些很重要的任务：</p>
+<ul>
+<li>
+<p>为原生代码生成一个typedef以用来通过函数指针进行函数调用。</p>
+</li>
+<li>
+<p>通过名字找到原生代码中的函数，并且将其赋值给一个函数指针如果有必要，将托管代码中的参数内存转换到原生代码格式</p>
+</li>
+<li>
+<p>It defines a typedef for the native method which is used to invoke the method via a function pointer.</p>
+</li>
+<li>
+<p>It resolves the native method by name, getting a function pointer to that method.</p>
+</li>
+<li>
+<p>It converts the arguments from their managed representation to their native representation (if necessary).</p>
+</li>
+<li>
+<p>It calls the native method.</p>
+</li>
+<li>
+<p>It converts the return value of the method from its native representation to its managed representation (if necessary).</p>
+</li>
+<li>
+<p>In converts any out or ref arguments from from their native representation to their managed representation (if necessary).</p>
+</li>
+</ul>
+<p>如果有必要，将原生函数的返回值内存转换到托管代码的格式如果有必要，还需要处理具有关键字是“out”或者“ref”的参数，将他们的内容从原生格式转换到托管代码格式。下面我们就来看看产生的这些封装函数都是什么个情况。</p>
+<h2 id="toc_2">内存转换blittable数据类型<a class="vnote-anchor" href="#toc_2" data-anchor-icon="#"></a></h2>
+<pre><code class="lang-c# hljs">[<span class="hljs-meta">DllImport(<span class="hljs-meta-string">"__Internal"</span>)</span>]
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">extern</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">Increment</span>(<span class="hljs-params"><span class="hljs-keyword">int</span> <span class="hljs-keyword">value</span></span>)</span>;
+</code></pre>
+<pre><code class="lang-c++ hljs">
+<span class="hljs-comment">//31:#define DEFAULT_CALL STDCALL</span>
+<span class="hljs-comment">//33:#define DEFAULT_CALL</span>
+
+<span class="hljs-comment">//申明函数原型</span>
+<span class="hljs-keyword">extern</span> <span class="hljs-string">"C"</span> <span class="hljs-keyword">int32_t</span> <span class="hljs-function">DEFAULT_CALL <span class="hljs-title">Increment</span><span class="hljs-params">(<span class="hljs-keyword">int32_t</span>)</span></span>;
+
+<span class="hljs-comment">// DllImport</span>
+<span class="hljs-comment">// System.Int32 PInokeDemo::Increment(System.Int32)</span>
+<span class="hljs-keyword">extern</span> <span class="hljs-string">"C"</span> <span class="hljs-function">IL2CPP_METHOD_ATTR int32_t <span class="hljs-title">PInokeDemo_Increment_m8720CCE207907DCC4601737D9A758022AD17D82B</span> <span class="hljs-params">(<span class="hljs-keyword">int32_t</span> ___value0, <span class="hljs-keyword">const</span> RuntimeMethod* method)</span>
+</span>{
+	<span class="hljs-function"><span class="hljs-keyword">typedef</span> <span class="hljs-title">int32_t</span> <span class="hljs-params">(DEFAULT_CALL *PInvokeFunc)</span> <span class="hljs-params">(<span class="hljs-keyword">int32_t</span>)</span></span>;
+
+    <span class="hljs-comment">// 使用reinterpret_cast</span>
+	<span class="hljs-comment">// Native function invocation</span>
+	<span class="hljs-keyword">int32_t</span> returnValue = <span class="hljs-keyword">reinterpret_cast</span>&lt;PInvokeFunc&gt;(Increment)(___value0);
+
+	<span class="hljs-keyword">return</span> returnValue;
+}
+
+<span class="hljs-comment">// 文章的原版代码生成</span>
+<span class="hljs-keyword">extern</span> <span class="hljs-string">"C"</span> <span class="hljs-keyword">int32_t</span> HelloWorld_Increment_m3 (Object_t * __this <span class="hljs-comment">/*static, unused */</span>, <span class="hljs-keyword">int32_t</span> ___value, <span class="hljs-keyword">const</span> MethodInfo* method)
+{
+    <span class="hljs-function"><span class="hljs-keyword">typedef</span> <span class="hljs-title">int32_t</span> <span class="hljs-params">(DEFAULT_CALL *PInvokeFunc)</span> <span class="hljs-params">(<span class="hljs-keyword">int32_t</span>)</span></span>;
+    <span class="hljs-keyword">static</span> PInvokeFunc _il2cpp_pinvoke_func;
+    <span class="hljs-keyword">if</span> (!_il2cpp_pinvoke_func)
+    {
+        <span class="hljs-comment">//使用了强制转换</span>
+        _il2cpp_pinvoke_func = (PInvokeFunc)Increment;
+        <span class="hljs-keyword">if</span> (_il2cpp_pinvoke_func == <span class="hljs-literal">NULL</span>)
+        {
+            il2cpp_codegen_raise_exception(il2cpp_codegen_get_not_supported_exception(<span class="hljs-string">"Unableto find method for p/invoke: 'Increment'"</span>));
+        }
+    }
+    <span class="hljs-keyword">int32_t</span> _return_value = _il2cpp_pinvoke_func(___value);
+    <span class="hljs-keyword">return</span> _return_value;
+}
+
+</code></pre>
+<p>在iOS平台上，原生函数会被静态的链接到单一的bin文件中（通过在DllImport中的“__Internal”关键字），因此IL2CPP运行时并不需要动态的查找相应的函数指针。相反，这部分工作是在link期间完成的。在其他平台上，IL2CPP可能会根据需要进行函数指针的查找。</p>
+<p>事实情况是：在iOS平台，非正确的p/invoke在c++编译器link的阶段就会体现出来而不是等到运行时才发现。因此所有的p/invoke都必须正确，哪怕他们实际没有被执行到。<br>
+最终，原生代码通过函数指针被调用，函数的返回值被送回托管代码中。请注意在上面的例子中，参数是按值传递的，所以任何对参数值的改变都不会最终印象到托管代码中。</p>
+<h2 id="toc_3">内存转换non-blittable类型<a class="vnote-anchor" href="#toc_3" data-anchor-icon="#"></a></h2>
+<p>当处理non-blittable数据类型比如string的时候，事情会变得更加有趣。还记得前面文中提到的吗？在IL2CPP中string实际上是一个通过UTF-16编码的，最前面加上了一个4字节前缀的，两字节宽的数组。这种内存格式和C中的char<em>或者wchar_t</em>都不兼容，因此我们必须做一些转换。</p>
+<pre><code class="lang-c# hljs">[<span class="hljs-meta">DllImport(<span class="hljs-meta-string">"__Internal"</span>)</span>]
+[<span class="hljs-meta">return: MarshalAs(UnmanagedType.U1)</span>]
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">extern</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">StringsMatch</span>(<span class="hljs-params">[MarshalAs(UnmanagedType.LPStr</span>)]<span class="hljs-keyword">string</span> l, [<span class="hljs-title">MarshalAs</span>(<span class="hljs-params">UnmanagedType.LPStr</span>)]<span class="hljs-keyword">string</span> r)</span>;
+</code></pre>
+<pre><code class="lang-c++ hljs">
+<span class="hljs-comment">//Native 函数原型</span>
+<span class="hljs-keyword">extern</span> <span class="hljs-string">"C"</span> <span class="hljs-keyword">uint8_t</span> <span class="hljs-function">DEFAULT_CALL <span class="hljs-title">StringsMatch</span><span class="hljs-params">(<span class="hljs-keyword">char</span>*, <span class="hljs-keyword">char</span>*)</span></span>;
+
+<span class="hljs-comment">// PInvoke</span>
+<span class="hljs-comment">// System.Boolean PInokeDemo::StringsMatch(System.String,System.String)</span>
+<span class="hljs-keyword">extern</span> <span class="hljs-string">"C"</span> <span class="hljs-function">IL2CPP_METHOD_ATTR <span class="hljs-keyword">bool</span> <span class="hljs-title">PInokeDemo_StringsMatch_mD5AE70C0C8E366676F35D317E96BD4D9EE3A1452</span> <span class="hljs-params">(String_t* ___l0, String_t* ___r1, <span class="hljs-keyword">const</span> RuntimeMethod* method)</span>
+</span>{
+	<span class="hljs-function"><span class="hljs-keyword">typedef</span> <span class="hljs-title">uint8_t</span> <span class="hljs-params">(DEFAULT_CALL *PInvokeFunc)</span> <span class="hljs-params">(<span class="hljs-keyword">char</span>*, <span class="hljs-keyword">char</span>*)</span></span>;
+
+    <span class="hljs-comment">// String需要变换为Char*</span>
+	<span class="hljs-comment">// Marshaling of parameter U27___l0U27 to native representation</span>
+	<span class="hljs-keyword">char</span>* ____l0_marshaled = <span class="hljs-literal">NULL</span>;
+	____l0_marshaled = il2cpp_codegen_marshal_string(___l0);
+
+    <span class="hljs-comment">// String需要变换为Char*</span>
+	<span class="hljs-comment">// Marshaling of parameter U27___r1U27 to native representation</span>
+	<span class="hljs-keyword">char</span>* ____r1_marshaled = <span class="hljs-literal">NULL</span>;
+	____r1_marshaled = il2cpp_codegen_marshal_string(___r1);
+
+    <span class="hljs-comment">// 做字符串比较</span>
+	<span class="hljs-comment">// Native function invocation</span>
+	<span class="hljs-keyword">uint8_t</span> returnValue = <span class="hljs-keyword">reinterpret_cast</span>&lt;PInvokeFunc&gt;(StringsMatch)(____l0_marshaled, ____r1_marshaled);
+
+    <span class="hljs-comment">// 字符串释放</span>
+	<span class="hljs-comment">// Marshaling cleanup of parameter U27___l0U27 native representation</span>
+	il2cpp_codegen_marshal_free(____l0_marshaled);
+	____l0_marshaled = <span class="hljs-literal">NULL</span>;
+
+    <span class="hljs-comment">// 字符串释放</span>
+	<span class="hljs-comment">// Marshaling cleanup of parameter U27___r1U27 native representation</span>
+	il2cpp_codegen_marshal_free(____r1_marshaled);
+	____r1_marshaled = <span class="hljs-literal">NULL</span>;
+
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">static_cast</span>&lt;<span class="hljs-keyword">bool</span>&gt;(returnValue);
+}
+</code></pre>
+<h2 id="toc_4">内存转换用户自定义类型<a class="vnote-anchor" href="#toc_4" data-anchor-icon="#"></a></h2>
+<p>像int或者是string这样的类型还算好理解，那么如果有更加复杂的用户自定义类型会发生什么呢？假设我们想对有着三个float的Vector类型进行内存转换，我们会发现如果一个自定义结构中的所有成员都是blittable的话，这个类型就可以作为blittable来对待</p>
+<pre><code class="lang-c# hljs">[<span class="hljs-meta">DllImport(<span class="hljs-meta-string">"__Internal"</span>)</span>]
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">extern</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">float</span> <span class="hljs-title">ComputeLength</span>(<span class="hljs-params">Vector v</span>)</span>;
+</code></pre>
+<pre><code class="lang-c++ hljs"><span class="hljs-comment">// PInokeDemo_Vector</span>
+<span class="hljs-class"><span class="hljs-keyword">struct</span>  <span class="hljs-title">Vector_t42F8F537F176AD416BAA22CB3E79D4CB05E4D0E3</span> 
+{</span>
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-comment">// System.Single PInokeDemo_Vector::x</span>
+	<span class="hljs-keyword">float</span> ___x_0;
+	<span class="hljs-comment">// System.Single PInokeDemo_Vector::y</span>
+	<span class="hljs-keyword">float</span> ___y_1;
+	<span class="hljs-comment">// System.Single PInokeDemo_Vector::z</span>
+	<span class="hljs-keyword">float</span> ___z_2;
+
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-comment">//获取偏移</span>
+	<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">static</span> int32_t <span class="hljs-title">get_offset_of_x_0</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> <span class="hljs-keyword">static_cast</span>&lt;<span class="hljs-keyword">int32_t</span>&gt;(offsetof(Vector_t42F8F537F176AD416BAA22CB3E79D4CB05E4D0E3, ___x_0)); }
+	<span class="hljs-comment">//获取值信息</span>
+	<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">float</span> <span class="hljs-title">get_x_0</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>{ <span class="hljs-keyword">return</span> ___x_0; }
+	<span class="hljs-comment">//获取地址信息</span>
+	<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">float</span>* <span class="hljs-title">get_address_of_x_0</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> &amp;___x_0; }
+	<span class="hljs-comment">//设置值信息</span>
+	<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">set_x_0</span><span class="hljs-params">(<span class="hljs-keyword">float</span> value)</span>
+	</span>{
+		___x_0 = value;
+	}
+
+	<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">static</span> int32_t <span class="hljs-title">get_offset_of_y_1</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> <span class="hljs-keyword">static_cast</span>&lt;<span class="hljs-keyword">int32_t</span>&gt;(offsetof(Vector_t42F8F537F176AD416BAA22CB3E79D4CB05E4D0E3, ___y_1)); }
+	<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">float</span> <span class="hljs-title">get_y_1</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>{ <span class="hljs-keyword">return</span> ___y_1; }
+	<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">float</span>* <span class="hljs-title">get_address_of_y_1</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> &amp;___y_1; }
+	<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">set_y_1</span><span class="hljs-params">(<span class="hljs-keyword">float</span> value)</span>
+	</span>{
+		___y_1 = value;
+	}
+
+	<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">static</span> int32_t <span class="hljs-title">get_offset_of_z_2</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> <span class="hljs-keyword">static_cast</span>&lt;<span class="hljs-keyword">int32_t</span>&gt;(offsetof(Vector_t42F8F537F176AD416BAA22CB3E79D4CB05E4D0E3, ___z_2)); }
+	<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">float</span> <span class="hljs-title">get_z_2</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>{ <span class="hljs-keyword">return</span> ___z_2; }
+	<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">float</span>* <span class="hljs-title">get_address_of_z_2</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> &amp;___z_2; }
+	<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">set_z_2</span><span class="hljs-params">(<span class="hljs-keyword">float</span> value)</span>
+	</span>{
+		___z_2 = value;
+	}
+};
+
+<span class="hljs-comment">//</span>
+<span class="hljs-keyword">extern</span> <span class="hljs-string">"C"</span> <span class="hljs-function"><span class="hljs-keyword">float</span> DEFAULT_CALL <span class="hljs-title">ComputeLength</span><span class="hljs-params">(Vector_t42F8F537F176AD416BAA22CB3E79D4CB05E4D0E3 )</span></span>;
+
+<span class="hljs-comment">// System.Single PInokeDemo::ComputeLength(PInokeDemo_Vector)</span>
+<span class="hljs-keyword">extern</span> <span class="hljs-string">"C"</span> <span class="hljs-function">IL2CPP_METHOD_ATTR <span class="hljs-keyword">float</span> <span class="hljs-title">PInokeDemo_ComputeLength_m0F91FACA52DC622F4D8DCA67B82AD5496D97E7F3</span> <span class="hljs-params">(Vector_t42F8F537F176AD416BAA22CB3E79D4CB05E4D0E3  ___v0, <span class="hljs-keyword">const</span> RuntimeMethod* method)</span>
+</span>{
+	<span class="hljs-function"><span class="hljs-keyword">typedef</span> <span class="hljs-title">float</span> <span class="hljs-params">(DEFAULT_CALL *PInvokeFunc)</span> <span class="hljs-params">(Vector_t42F8F537F176AD416BAA22CB3E79D4CB05E4D0E3 )</span></span>;
+
+    <span class="hljs-comment">//参数按值传递</span>
+	<span class="hljs-comment">// Native function invocation</span>
+	<span class="hljs-keyword">float</span> returnValue = <span class="hljs-keyword">reinterpret_cast</span>&lt;PInvokeFunc&gt;(ComputeLength)(___v0);
+
+	<span class="hljs-keyword">return</span> returnValue;
+}
+</code></pre>
+<h2 id="toc_5">内存转换数组<a class="vnote-anchor" href="#toc_5" data-anchor-icon="#"></a></h2>
+<p>我们来看一下如果内存转换blittable和non-blittable的数组。SumArrayElements传递的是一个整数型数组，数组会进行内存转换，不过因为其每个元素都是blittable的int形，转换的代价是非常小的：</p>
+<pre><code class="lang-c# hljs">[<span class="hljs-meta">DllImport(<span class="hljs-meta-string">"__Internal"</span>)</span>]
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">extern</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">SumArrayElements</span>(<span class="hljs-params"><span class="hljs-keyword">int</span>[] elements, <span class="hljs-keyword">int</span> size</span>)</span>;
+</code></pre>
+<pre><code class="lang-c++ hljs"><span class="hljs-keyword">extern</span> <span class="hljs-string">"C"</span> <span class="hljs-keyword">int32_t</span> <span class="hljs-function">DEFAULT_CALL <span class="hljs-title">SumArrayElements</span><span class="hljs-params">(<span class="hljs-keyword">int32_t</span>*, <span class="hljs-keyword">int32_t</span>)</span></span>;
+
+<span class="hljs-comment">//[ 的Unicode是U5B ]的Unicode是U5D</span>
+
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// System.Int32[]</span>
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Int32U5BU5D_t2B9E4FDDDB9F0A00EC0AC631BA2DA915EB1ECF83</span>  :</span> <span class="hljs-keyword">public</span> RuntimeArray
+{
+<span class="hljs-keyword">public</span>:
+	ALIGN_FIELD (<span class="hljs-number">8</span>) <span class="hljs-keyword">int32_t</span> m_Items[<span class="hljs-number">1</span>];
+
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-function"><span class="hljs-keyword">inline</span> int32_t <span class="hljs-title">GetAt</span><span class="hljs-params">(<span class="hljs-keyword">il2cpp_array_size_t</span> index)</span> <span class="hljs-keyword">const</span>
+	</span>{
+		IL2CPP_ARRAY_BOUNDS_CHECK(index, (<span class="hljs-keyword">uint32_t</span>)(<span class="hljs-keyword">this</span>)-&gt;max_length);
+		<span class="hljs-keyword">return</span> m_Items[index];
+	}
+	<span class="hljs-function"><span class="hljs-keyword">inline</span> int32_t* <span class="hljs-title">GetAddressAt</span><span class="hljs-params">(<span class="hljs-keyword">il2cpp_array_size_t</span> index)</span>
+	</span>{
+		IL2CPP_ARRAY_BOUNDS_CHECK(index, (<span class="hljs-keyword">uint32_t</span>)(<span class="hljs-keyword">this</span>)-&gt;max_length);
+		<span class="hljs-keyword">return</span> m_Items + index;
+	}
+	<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">SetAt</span><span class="hljs-params">(<span class="hljs-keyword">il2cpp_array_size_t</span> index, <span class="hljs-keyword">int32_t</span> value)</span>
+	</span>{
+		IL2CPP_ARRAY_BOUNDS_CHECK(index, (<span class="hljs-keyword">uint32_t</span>)(<span class="hljs-keyword">this</span>)-&gt;max_length);
+		m_Items[index] = value;
+	}
+	<span class="hljs-function"><span class="hljs-keyword">inline</span> int32_t <span class="hljs-title">GetAtUnchecked</span><span class="hljs-params">(<span class="hljs-keyword">il2cpp_array_size_t</span> index)</span> <span class="hljs-keyword">const</span>
+	</span>{
+		<span class="hljs-keyword">return</span> m_Items[index];
+	}
+	<span class="hljs-function"><span class="hljs-keyword">inline</span> int32_t* <span class="hljs-title">GetAddressAtUnchecked</span><span class="hljs-params">(<span class="hljs-keyword">il2cpp_array_size_t</span> index)</span>
+	</span>{
+		<span class="hljs-keyword">return</span> m_Items + index;
+	}
+	<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">SetAtUnchecked</span><span class="hljs-params">(<span class="hljs-keyword">il2cpp_array_size_t</span> index, <span class="hljs-keyword">int32_t</span> value)</span>
+	</span>{
+		m_Items[index] = value;
+	}
+};
+
+<span class="hljs-comment">// System.Int32 PInokeDemo::SumArrayElements(System.Int32[],System.Int32)</span>
+<span class="hljs-keyword">extern</span> <span class="hljs-string">"C"</span> <span class="hljs-function">IL2CPP_METHOD_ATTR int32_t <span class="hljs-title">PInokeDemo_SumArrayElements_mA499DAED1106E0DB0D50FD74CB14E6CB86A55B63</span> <span class="hljs-params">(Int32U5BU5D_t2B9E4FDDDB9F0A00EC0AC631BA2DA915EB1ECF83* ___elements0, <span class="hljs-keyword">int32_t</span> ___size1, <span class="hljs-keyword">const</span> RuntimeMethod* method)</span>
+</span>{
+	<span class="hljs-function"><span class="hljs-keyword">typedef</span> <span class="hljs-title">int32_t</span> <span class="hljs-params">(DEFAULT_CALL *PInvokeFunc)</span> <span class="hljs-params">(<span class="hljs-keyword">int32_t</span>*, <span class="hljs-keyword">int32_t</span>)</span></span>;
+
+	<span class="hljs-comment">// Marshaling of parameter U27___elements0U27 to native representation</span>
+	<span class="hljs-keyword">int32_t</span>* ____elements0_marshaled = <span class="hljs-literal">NULL</span>;
+	<span class="hljs-keyword">if</span> (___elements0 != <span class="hljs-literal">NULL</span>)
+	{
+		____elements0_marshaled = <span class="hljs-keyword">reinterpret_cast</span>&lt;<span class="hljs-keyword">int32_t</span>*&gt;((___elements0)-&gt;GetAddressAtUnchecked(<span class="hljs-number">0</span>));
+	}
+
+	<span class="hljs-comment">// Native function invocation</span>
+	<span class="hljs-keyword">int32_t</span> returnValue = <span class="hljs-keyword">reinterpret_cast</span>&lt;PInvokeFunc&gt;(SumArrayElements)(____elements0_marshaled, ___size1);
+
+	<span class="hljs-keyword">return</span> returnValue;
+}
+</code></pre>
+<h3 id="toc_6">内存转换non-blittable类型的数组开销就会大很多<a class="vnote-anchor" href="#toc_6" data-anchor-icon="#"></a></h3>
+<pre><code class="lang-c# hljs"><span class="hljs-keyword">struct</span> Boss
+{
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">string</span> name;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> health;
+
+    <span class="hljs-keyword">public</span> Boss(<span class="hljs-keyword">string</span> v1, <span class="hljs-keyword">int</span> v2) : <span class="hljs-keyword">this</span>()
+    {
+        <span class="hljs-keyword">this</span>.name = v1;
+        <span class="hljs-keyword">this</span>.health = v2;
+    }
+};
+</code></pre>
+<pre><code class="lang-c++ hljs">
+<span class="hljs-comment">// Boss的类型定义，使用了2种类型，一种为Com接口，一种为P/Invoke</span>
+<span class="hljs-comment">// Native definition for P/Invoke marshalling of PInokeDemo/Boss</span>
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Boss_t4DFCA8B70274E8A527C98C58DFBFAC4530831020_marshaled_pinvoke</span>
+{</span>
+	<span class="hljs-keyword">char</span>* ___name_0;
+	<span class="hljs-keyword">int32_t</span> ___health_1;
+};
+
+<span class="hljs-comment">// Native definition for COM marshalling of PInokeDemo/Boss</span>
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Boss_t4DFCA8B70274E8A527C98C58DFBFAC4530831020_marshaled_com</span>
+{</span>
+	Il2CppChar* ___name_0;
+	<span class="hljs-keyword">int32_t</span> ___health_1;
+};
+
+<span class="hljs-keyword">extern</span> <span class="hljs-string">"C"</span> <span class="hljs-function"><span class="hljs-keyword">float</span> DEFAULT_CALL <span class="hljs-title">SumBossHealth</span><span class="hljs-params">(Boss_t4DFCA8B70274E8A527C98C58DFBFAC4530831020_marshaled_pinvoke*, <span class="hljs-keyword">int32_t</span>)</span></span>;
+<span class="hljs-comment">// System.Single PInokeDemo::SumBossHealth(PInokeDemo_Boss[],System.Int32)</span>
+<span class="hljs-keyword">extern</span> <span class="hljs-string">"C"</span> <span class="hljs-function">IL2CPP_METHOD_ATTR <span class="hljs-keyword">float</span> <span class="hljs-title">PInokeDemo_SumBossHealth_mF466555F6E347A8138B91E854F2058576F595624</span> <span class="hljs-params">(BossU5BU5D_t732B317799F37FFEDE8CA5EE7CEFD0D447C6A6AE* ___b0, <span class="hljs-keyword">int32_t</span> ___len1, <span class="hljs-keyword">const</span> RuntimeMethod* method)</span>
+</span>{
+
+
+	<span class="hljs-function"><span class="hljs-keyword">typedef</span> <span class="hljs-title">float</span> <span class="hljs-params">(DEFAULT_CALL *PInvokeFunc)</span> <span class="hljs-params">(Boss_t4DFCA8B70274E8A527C98C58DFBFAC4530831020_marshaled_pinvoke*, <span class="hljs-keyword">int32_t</span>)</span></span>;
+	<span class="hljs-comment">// Marshaling of parameter U27___b0U27 to native representation</span>
+	Boss_t4DFCA8B70274E8A527C98C58DFBFAC4530831020_marshaled_pinvoke* ____b0_marshaled = <span class="hljs-literal">NULL</span>;
+	<span class="hljs-keyword">if</span> (___b0 != <span class="hljs-literal">NULL</span>)
+	{
+		<span class="hljs-keyword">il2cpp_array_size_t</span> ____b0_Length = (___b0)-&gt;max_length;
+		
+		<span class="hljs-comment">//内存申请</span>
+		____b0_marshaled = il2cpp_codegen_marshal_allocate_array&lt;Boss_t4DFCA8B70274E8A527C98C58DFBFAC4530831020_marshaled_pinvoke&gt;(____b0_Length);
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int32_t</span> i = <span class="hljs-number">0</span>; i &lt; ARRAY_LENGTH_AS_INT32(____b0_Length); i++)
+		{
+		    <span class="hljs-comment">//内存转换</span>
+			Boss_t4DFCA8B70274E8A527C98C58DFBFAC4530831020_marshal_pinvoke((___b0)-&gt;GetAtUnchecked(<span class="hljs-keyword">static_cast</span>&lt;<span class="hljs-keyword">il2cpp_array_size_t</span>&gt;(i)), (____b0_marshaled)[i]);
+		}
+	}
+	<span class="hljs-keyword">else</span>
+	{
+		____b0_marshaled = <span class="hljs-literal">NULL</span>;
+	}
+    
+    <span class="hljs-comment">// 函数调用</span>
+	<span class="hljs-comment">// Native function invocation</span>
+	<span class="hljs-keyword">float</span> returnValue = <span class="hljs-keyword">reinterpret_cast</span>&lt;PInvokeFunc&gt;(SumBossHealth)(____b0_marshaled, ___len1);
+
+    <span class="hljs-comment">// 内存释放</span>
+	<span class="hljs-comment">// Marshaling cleanup of parameter U27___b0U27 native representation</span>
+	<span class="hljs-keyword">if</span> (____b0_marshaled != <span class="hljs-literal">NULL</span>)
+	{
+		<span class="hljs-keyword">const</span> <span class="hljs-keyword">il2cpp_array_size_t</span> ____b0_marshaled_CleanupLoopCount = (___b0 != <span class="hljs-literal">NULL</span>) ? (___b0)-&gt;max_length : <span class="hljs-number">0</span>;
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int32_t</span> i = <span class="hljs-number">0</span>; i &lt; ARRAY_LENGTH_AS_INT32(____b0_marshaled_CleanupLoopCount); i++)
+		{
+			Boss_t4DFCA8B70274E8A527C98C58DFBFAC4530831020_marshal_pinvoke_cleanup((____b0_marshaled)[i]);
+		}
+		il2cpp_codegen_marshal_free(____b0_marshaled);
+		____b0_marshaled = <span class="hljs-literal">NULL</span>;
+	}
+
+	<span class="hljs-keyword">return</span> returnValue;
+}
+</code></pre>
+<p>结论</p>
+<p>在内存转换上， IL2CPP的行为和Mono是一致的。因为IL2CPP会对extern函数和类型产生封装代码，因此我们可以检查交互调用的开销。对于blittable而言，开销通常还好，但是对于non-blittable而言，会让开销上升的很快。我们只是对内存转换做了个简单的介绍。有关返回值和带out关键字的参数，原生函数指针和托管中的代理，用户自定义的引用类型的内存转换，还请大家探索源码自行分析</p>
+
+    </div>
+</div>
+</div>
+
+<div id="container-floating" style="display:none;" class="d-none d-md-block d-xl-block">
+    <div id="floating-button" onclick="toggleMore()">
+        <p id="floating-more" class="more">&gt;</p>
+    </div>
+</div>
+
+<!--
+<div class="footer" id="vnote-footer">
+    <p>Generated by <em><a href="https://tamlok.github.io/vnote/">VNote</a></em>.</p>
+</div>
+-->
+</body>
+</html>
